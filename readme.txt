@@ -1,5 +1,15 @@
-This code have been designed to extracts annotation columns from Sirius outputs (before Juley 2023 updates) and integrates in to the Metfamily project file. It also, assigns the color code to the annotations terminology. It includes following steps
+example files reqired as input for both Sirius_MetFamily.R and Sirius_annot_in_MetFamily_shiny.R including:
+PrecursorMatrix.csv
+canopus_compound_summary.tsv
 
+Sirius_annot_in_MetFamily_shiny.R:
+is shiny app version of the Sirius_MetFamily.R which allows user to interact graphically 
+
+readme_shinyApp.txt
+is the detailed read me file for Sirius_annot_in_MetFamily_shiny.R
+
+Sirius_MetFamily.R:
+This code have been designed to extracts annotation columns from Sirius outputs (before Juley 2023 updates) and integrates in to the Metfamily project file. It also, assigns the color code to the annotations terminology. It includes following steps
 
 Setting Working Directory and Installing Package:
 The working directory is set interactively using choose.dir().
@@ -41,3 +51,5 @@ The "PrecursorMatrix_updated.xlsx" file is read into a data frame, and a value i
 The final result is written back to "PrecursorMatrix_updated.xlsx".
 
 PrecursorMatrix_updated.xlsx is ready to be uploaded in the Metfamily as a project file as it is.
+
+For any questions or issues, please contact [kvahabi@ipb-halle.de/sneumann@ipb-halle.de].
