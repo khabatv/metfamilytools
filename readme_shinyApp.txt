@@ -10,7 +10,7 @@ Result Output
 Cleanup
 Contact
 1. Introduction
-This Shiny app is designed to facilitate the processing of input files and create a modified version of the PrecursorMatrix file with canopus annotations.
+This Shiny app is designed to facilitate the processing of input files and create a modified version of the PrecursorMatrix file with canopus (Sirius) annotations.
 
 2. Instructions
 Before running the app, please follow these steps:
