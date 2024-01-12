@@ -17,11 +17,11 @@ data <- cbind(data, "AnnotationColors={HexCode}" = character(nrow(data)))
 write.table(data, "canopus_compound_summary_annot.tsv", sep = "\t", row.names = FALSE)
 
 
-##generate HexCode"for annotation extracted from canopus_compound_summary.xlsx
+##generate HexCode"for annotation extracted from canopus_compound_summary.tsv
 # Read the file into a data frame
 df <- read.table("canopus_compound_summary_annot.tsv", header = FALSE, sep = "\t")
 
-# Add "AnnotationColors={HexCode}" to the first row of the third column
+# Add "AnnotationColors={HexCode}" to the first row of the 25th column
 df[1, 25] <- "AnnotationColors={HexCode}"
 
 # Copy the 8th column, Remove duplicates and exclude the first row
@@ -37,7 +37,7 @@ uniqueAnnotions <- paste0(uniqueAnnotions, sample(strings_list, length(uniqueAnn
 # Format uniqueAnnotions into a single line with comma-separated values
 unqAntHexs <- paste(uniqueAnnotions, collapse = ", ")
 
-# Replace "HexCode" in the first row of the third column with unqAntHexs
+# Replace "HexCode" in the first row of the 25th column with unqAntHexs
 df[1, 25] <- gsub("HexCode", unqAntHexs, df[1, 25])
 
 # Write the updated data frame to the file
@@ -92,7 +92,7 @@ annotation_colors <- df_hex[1, 25]
 # read.delim() instead of read.table() to read the tab-delimited file.
 precursor_matrix <- read.delim("PrecursorMatrix.tsv", header = FALSE, sep = "\t")
 
-# Replace the content of cell [3, 2] with annotation_colors
+# Replace the content of cell [2, 3] with annotation_colors
 precursor_matrix[2, 3] <- annotation_colors
 
 # Write the updated data frame to the file
