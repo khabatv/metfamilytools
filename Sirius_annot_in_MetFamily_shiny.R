@@ -34,7 +34,8 @@ ui <- fluidPage(
   # Buttons and numeric input
   actionButton("submit_part1", "Show canopus annotations "),
   verbatimTextOutput("headers"),  # Add this line to display the column headers
-  numericInput("column_number", "insert Column Number of the annotation:", value = 8),
+  numericInput("column_number", "Insert Column Number of the annotation:", value = 8),
+  checkboxInput("replace_values", "Replace existing annotation", value = TRUE),
   actionButton("submit_part2", "Creat PrecursorMatrix with canopus annotation"),
   downloadButton("download_part2", "Download PrecursorMatrix with canopus annotation"),
   textOutput("message")
@@ -131,7 +132,11 @@ server <- function(input, output) {
       # Check if any matches were found
       if (length(matching_indices) > 0) {
         selected_value <- canopus_summary[matching_indices[1], input$column_number]
-        precursor_matrix[i, "V3"] <- selected_value
+        
+        # Check the checkbox input to determine whether to replace existing values
+        if (input$replace_values || is.na(precursor_matrix[i, "V3"])) {
+          precursor_matrix[i, "V3"] <- selected_value
+        }
       } else {
         # Handle the case where no match was found (you can add custom logic here)
         warning(paste("No match found for row", i, "in PrecursorMatrix"))
@@ -140,8 +145,8 @@ server <- function(input, output) {
     
     # Save the a new metfamily's PrecursorMatrix file containing the annotation from canopus_compound_summary
     write.table(precursor_matrix, file = "PrecursorMatrix_annot.tsv", sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
-   
-   
+    
+    
     
     
     if (input$column_number < 1 || input$column_number > ncol(canopus_summary)) {
@@ -180,7 +185,7 @@ server <- function(input, output) {
     # Write the hex color codes to the PrecursorMatrix_hex.tsv
     #write.table(precursor_matrix, "PrecursorMatrix_hex.tsv", sep = "\t", row.names = FALSE, col.names = FALSE)
     
-     
+    
     # Show a modal dialog to inform the user
     showModal(modalDialog(
       title = "Done",
