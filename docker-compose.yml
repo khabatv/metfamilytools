@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  webapp:  
+    container_name: MetFamilyTools
+    image: sneumann/metfamilytools
+    ports:
+      - "4085:3838"
+    
