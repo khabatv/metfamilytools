@@ -2,7 +2,9 @@ version: "3.8"
 services:
   webapp:  
     container_name: MetFamilyTools
+    restart: unless-stopped
     image: sneumann/metfamilytools
+    #build: .
     ports:
       - "4085:3838"
     
